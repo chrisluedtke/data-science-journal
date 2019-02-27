@@ -28,18 +28,18 @@ plt.style.use('seaborn')
 # -
 
 # **Contents**
-# * Overview
-# * Censorship in Data
-# * Hazard Function - the dangerous bathtub
-# * Survival Function (aka reliability function)
-# * Ways to estimate/model survival analysis - terms to be aware of
-# * `lifelines` package
-# * Example 1: Leukemia
-# * Kaplan-Meier survival estimate
-# * Cox Proportional Hazards Model -- Survival Regression
-# * Example 2: Recidivism
-# * Example 3: Heart Attack Survival
-# * Example 4: Customer Churn
+# * [Overview](#Overview)
+#     * Censorship in Data
+#     * Hazard Function - the dangerous bathtub
+#     * Survival Function (aka reliability function)
+#     * Ways to estimate/model survival analysis - terms to be aware of
+#     * `lifelines` package
+# * [Example 1: Leukemia](#Example-1:-Leukemia)
+#     * Kaplan-Meier survival estimate
+#     * Cox Proportional Hazards Model -- Survival Regression
+# * [Example 2: Recidivism](#Example-2:-Recidivism)
+# * [Example 3: Heart Attack Survival](#Example-3:-Heart-Attack-Survival])
+# * [Example 4: Customer Churn](#Example-4:-Customer-Churn)
 #
 # **Resources**
 # - [Wikipedia on Survival analysis](https://en.wikipedia.org/wiki/Survival_analysis)
@@ -47,13 +47,12 @@ plt.style.use('seaborn')
 # - [Summary of survival analysis by a biostatistician](http://sphweb.bumc.bu.edu/otlt/MPH-Modules/BS/BS704_Survival/BS704_Survival_print.html)
 # - [Another medical statistics article on survival analysis](https://www.sciencedirect.com/science/article/pii/S1756231716300639)
 # - [Survival analysis using R lecture slides](http://www.stat.columbia.edu/~madigan/W2025/notes/survival.pdf)
-
-# + {"id": "DSUEMY8usgwJ", "colab_type": "text", "cell_type": "markdown"}
-# #  Overview
+#
 # ![My normal approach is useless here, too.](https://imgs.xkcd.com/comics/probability.png)
 #
 # <center>source: <a href="https://xkcd.com/881/">xkcd</a></center>
-#
+
+# #  Overview
 # The aim of survival analysis is to analyze the effect of different risk factors and use them to predict the duration of time between one event ("birth") and another ("death"). It was first developed by actuaries and medical professionals to predict (as its name implies) how long individuals would survive. However, it has expanded into include many different applications.
 # * it is referred to as **reliability analysis** in engineering
 # * it can be referred to more generally as **time-to-event analysis**
@@ -85,7 +84,7 @@ plt.style.use('seaborn')
 #
 # Example | Birth Event | Death Event
 # ---|---|---
-# New cancer treatment | Participant begins trial | Participant dies due to cancer or complications of cancer
+# Cancer survival | Participant begins trial | Participant dies due to cancer or complications of cancer
 #
 # During the study:
 # 1. Some participants die during the course of the study--triggering their death event 
@@ -140,7 +139,7 @@ plt.style.use('seaborn')
 # As with most statistics, these are all refinements of the general principles, with the math to back them up. Software packages will tend to select reasonable defaults, and allow you to use parameters to tune or select things. The math for these gets varied and deep - but feel free to [dive in](https://en.wikipedia.org/wiki/Survival_analysis) if you're curious!
 
 # + {"id": "DSUEMY8usgwJ", "colab_type": "text", "cell_type": "markdown"}
-# ## `lifelines` package
+# ## `lifelines` library
 # It wasn't until 2014 that some other smart people made an implementation of survival analysis in Python called `lifelines`. 
 # It is built over Pandas and follows the same conventions for usage as scikit-learn.
 #
@@ -286,8 +285,6 @@ cph.plot();
 #
 # >Advice: with so few unique values (only 2), you can try  `strata=['sex']` in the call in `.fit`.
 
-lifelines.__version__
-
 # + {"id": "D1rwy5wMsgyL", "colab_type": "code", "outputId": "dc25e7d4-dd46-4b32-b566-a33cb42a2b70", "colab": {"base_uri": "https://localhost:8080/", "height": 347}}
 cph = lifelines.CoxPHFitter()
 cph.fit(df=leukemia, duration_col='t', 
@@ -304,7 +301,7 @@ cph.baseline_cumulative_hazard_.shape
 #
 # `Log-likelihood ratio test = 47.19 on 3 df, -log2(p)=31.55`
 #
-# The LRT and -log2(p) are higher, meaning this is likely a better fitting model.
+# The `LRT` and `-log2(p)` are higher, meaning this is likely a better fitting model.
 
 # + {"id": "jL8JzzhIsgyQ", "colab_type": "code", "outputId": "a8fc4df7-d7e1-4ca2-a31e-fff221445b84", "colab": {"base_uri": "https://localhost:8080/", "height": 378}}
 cph.plot();
