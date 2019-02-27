@@ -14,6 +14,8 @@
 #     name: python3
 # ---
 
+# # Logistic Regression
+
 # +
 import numpy as np
 import pandas as pd
@@ -24,8 +26,12 @@ from sklearn.model_selection import train_test_split
 pd.options.display.max_columns = None
 # -
 
-# # Logistic Regression
-#
+# **Resources**
+# - [5 Reasons “Logistic Regression” should be the first thing you learn when becoming a Data Scientist](https://towardsdatascience.com/5-reasons-logistic-regression-should-be-the-first-thing-you-learn-when-become-a-data-scientist-fcaae46605c4)
+# - [Logistic regression from scratch in numpy](https://blog.goodaudience.com/logistic-regression-from-scratch-in-numpy-5841c09e425f) - more code and math, with gradient descent and the logistic loss function
+# - more classification models from scikit-learn: [SVM](https://scikit-learn.org/stable/modules/svm.html#classification), [decision trees](https://scikit-learn.org/stable/modules/tree.html#classification), and [naive Bayes](https://scikit-learn.org/stable/modules/naive_bayes.html). The underlying math varies significantly, but the API and interpretation are fairly similar
+# - More on [music informatics](https://en.wikipedia.org/wiki/Music_informatics), how audio features were actually calculated in the FMA dataset used at the end of this notebook
+
 # There are many options for regression. Recall that **linear regression** is helpful when predicting a real number along some continuum without a restricted range. Things like income and age.
 #
 # But what about . . .
@@ -41,9 +47,6 @@ pd.options.display.max_columns = None
 #
 # $S(x) = \frac{1}{1 + e^{-x}} = \frac{e^x}{e^x + 1}$
 #
-# ## Resources
-#
-# [5 Reasons “Logistic Regression” should be the first thing you learn when becoming a Data Scientist](https://towardsdatascience.com/5-reasons-logistic-regression-should-be-the-first-thing-you-learn-when-become-a-data-scientist-fcaae46605c4)
 #
 # **What data science methods are used at work?** (source: [Kaggle 2017 Survey](https://www.kaggle.com/surveys/2017))
 # ![](img/kaggle-common-algos.PNG)
@@ -269,13 +272,3 @@ print(pd.DataFrame([prev, correct]).T.round(1))
 # If you find that fitting a model to classify *all* genres isn't very good, it's totally OK to limit to the most frequent genres, or perhaps trying to combine or cluster genres as a preprocessing step. Even then, there will be limits to how good a model can be with just this metadata - if you really want to train an effective genre classifier, you'll have to involve the other data (see stretch goals).
 #
 # This is real data - there is no "one correct answer", so you can take this in a variety of directions. Just make sure to support your findings, and feel free to share them as well! This is meant to be practice for dealing with other "messy" data, a common task in data science.
-
-# + {"colab_type": "text", "id": "wlI5OXfSag9C", "cell_type": "markdown"}
-# ## Resources and stretch goals
-#
-# - Check out the other .csv files from the FMA dataset, and see if you can join them or otherwise fit interesting models with them
-# - [Logistic regression from scratch in numpy](https://blog.goodaudience.com/logistic-regression-from-scratch-in-numpy-5841c09e425f) - if you want to dig in a bit more to both the code and math (also takes a gradient descent approach, introducing the logistic loss function)
-# - Create a visualization to show predictions of your model - ideally show a confidence interval based on error!
-# - Check out and compare classification models from scikit-learn, such as [SVM](https://scikit-learn.org/stable/modules/svm.html#classification), [decision trees](https://scikit-learn.org/stable/modules/tree.html#classification), and [naive Bayes](https://scikit-learn.org/stable/modules/naive_bayes.html). The underlying math will vary significantly, but the API (how you write the code) and interpretation will actually be fairly similar.
-# - Sign up for [Kaggle](https://kaggle.com), and find a competition to try logistic regression with
-# - (Not logistic regression related) If you enjoyed the assignment, you may want to read up on [music informatics](https://en.wikipedia.org/wiki/Music_informatics), which is how those audio features were actually calculated. The FMA includes the actual raw audio, so (while this is more of a longterm project than a stretch goal, and won't fit in Colab) if you'd like you can check those out and see what sort of deeper analysis you can do.
