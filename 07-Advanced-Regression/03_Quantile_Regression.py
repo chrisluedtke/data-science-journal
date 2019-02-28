@@ -13,6 +13,12 @@
 #     name: python3
 # ---
 
+# <strong id="tocheading">Table of Contents</strong>
+# <div id="toc"></div>
+
+# + {"language": "javascript"}
+# $.getScript('https://kmahelona.github.io/ipython_notebook_goodies/ipython_notebook_toc.js')
+
 # + {"colab_type": "text", "id": "SV7gaADiicnV", "cell_type": "markdown"}
 # # Quantile Regression
 #

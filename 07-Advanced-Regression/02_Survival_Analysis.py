@@ -172,10 +172,11 @@ leukemia.info()
 leukemia.describe()
 
 # + {"id": "tDasOEocsgxQ", "colab_type": "code", "outputId": "fa606f2c-3531-4d30-d453-55f257b85a9f", "colab": {"base_uri": "https://localhost:8080/", "height": 376}}
-time = leukemia.t.values
-event = leukemia.status.values
+durations = leukemia.t.values
+events = leukemia.status.values
 
-ax = lifelines.plotting.plot_lifetimes(time, event_observed=event)
+ax = lifelines.plotting.plot_lifetimes(durations=durations,
+                                       event_observed=events)
 ax.set_xlim(0, 40)
 ax.grid(axis='x')
 ax.set_xlabel("Time in Months")
@@ -192,16 +193,16 @@ plt.plot();
 #
 # It CANNOT account for risk factors and is NOT regression. It is *non-parametric* (does not involve parameters).
 #
-# However it is a good way to visualize a survival dataset, and can be useful to compare the effects of a single categorical variable.
+# However it is a good way to visualize a survival dataset, and can be **useful to compare the effects of a single categorical variable**.
 
 # + {"id": "5XoM5PzGsgxX", "colab_type": "code", "outputId": "fc1070bb-1840-46d4-cc8b-1de402cf556c", "colab": {"base_uri": "https://localhost:8080/", "height": 34}}
 kmf = lifelines.KaplanMeierFitter()
 
-kmf.fit(time, event_observed=event)
+kmf.fit(durations, events)
 
 kmf.survival_function_.plot()
 # or kmf.survival_function_.plot.line()
-plt.title('Survival Function Leukemia Patients');
+plt.title('KM Survival Function: Leukemia Patients');
 print(f'Median Survival: {kmf.median_} months after treatment')
 
 # + {"id": "udKT7uBAsgxi", "colab_type": "code", "outputId": "31c095f5-70bd-4c7e-bc40-da331a449352", "colab": {"base_uri": "https://localhost:8080/", "height": 411}}
@@ -209,12 +210,14 @@ print(f'Median Survival: {kmf.median_} months after treatment')
 ax = plt.subplot(111)
 
 treatment = (leukemia["Rx"] == 1)
-kmf.fit(time[treatment], event_observed=event[treatment], 
+kmf.fit(durations=durations[treatment], 
+        event_observed=events[treatment], 
         label="Treatment 1")
 kmf.plot(ax=ax)
 print(f'Median survival time with Treatment 1: {kmf.median_} months')
 
-kmf.fit(time[~treatment], event_observed=event[~treatment], 
+kmf.fit(durations=durations[~treatment], 
+        event_observed=events[~treatment], 
         label="Treatment 0")
 kmf.plot(ax=ax)
 print(f'Median survival time with Treatment 0: {kmf.median_} months')
@@ -227,6 +230,8 @@ plt.title("Survival Times for Leukemia Treatments");
 
 # + {"id": "Ej1Zb4IYsgxr", "colab_type": "text", "cell_type": "markdown"}
 # ## Cox Proportional Hazards Model -- Survival Regression
+# Useful for comparing relative hazards (model accepts entire DataFrame).
+#
 # It assumes the ratio of death event risks (hazard) of two groups remains about the same over time.
 # This ratio is called the hazards ratio or the relative risk.
 #
@@ -239,7 +244,7 @@ plt.title("Survival Times for Leukemia Treatments");
 # + {"id": "Skypo6ABsgxs", "colab_type": "code", "outputId": "7685e61e-546c-4c11-acdb-2f78a79b1d05", "colab": {"base_uri": "https://localhost:8080/", "height": 330}}
 # Using Cox Proportional Hazards model
 cph = lifelines.CoxPHFitter()
-cph.fit(leukemia, 't', event_col='status')
+cph.fit(df=leukemia, duration_col='t', event_col='status')
 cph.print_summary()
 
 # + {"id": "sIUr2gT7sgxz", "colab_type": "text", "cell_type": "markdown"}
@@ -265,9 +270,11 @@ cph.print_summary()
 # `Likelihood ratio (LR) test`: this is a measure of how likely it is that the coefficients are not zero, and can compare the goodness of fit of a model versus an alternative null model. Is often actually calculated as a logarithm, resulting in the log-likelihood ratio statistic and allowing the distribution of the test statistic to be approximated with [Wilks' theorem](https://en.wikipedia.org/wiki/Wilks%27_theorem).
 
 # + {"id": "SHPFMpUqsgx0", "colab_type": "code", "outputId": "6e8f47d0-1c58-437b-9908-11a7d0a44eb4", "colab": {"base_uri": "https://localhost:8080/", "height": 378}}
+# investigate continuous feature, must bin with 'values'
 cph.plot_covariate_groups(covariate='logWBC', values=np.arange(1.5,5,.5));
 
 # + {"id": "hd02Nni_sgx7", "colab_type": "code", "outputId": "ababdda0-67e7-412e-8dbe-04139681e466", "colab": {"base_uri": "https://localhost:8080/", "height": 378}}
+# categorical feature
 cph.plot_covariate_groups(covariate='sex', values=[0,1]);
 
 # + {"id": "-JRvblsIsgyB", "colab_type": "text", "cell_type": "markdown"}
@@ -474,17 +481,18 @@ cph.check_assumptions(recidivism)
 # This means that, as is often the case in data science, there isn't a single objective right answer - your goal is to *support* your answer, whatever it is, with data and reasoning.
 
 # + {"id": "OIfMQKnSy8Zl", "colab_type": "code", "outputId": "87f6401d-352f-437d-eda8-c4021573d29c", "colab": {"base_uri": "https://localhost:8080/", "height": 342}}
-pd.options.display.max_columns = None
 churn_data = pd.read_csv('https://raw.githubusercontent.com/'
                          'treselle-systems/customer_churn_analysis/'
                          'master/WA_Fn-UseC_-Telco-Customer-Churn.csv')
 churn_data.head()
-# -
 
-churn_data['Churn'] = churn_data['Churn'].map({'No':0, 'Yes':1})
+# +
+event_col = 'Churn'
+duration_col = 'tenure'
 
-targets = ['Churn', 'tenure']
-predictors = sorted(list(set(churn_data.columns) - set(['customerID']) - set(targets)))
+churn_data[event_col] = churn_data[event_col].map({'No':0, 'Yes':1})
+
+predictors = sorted(list(set(churn_data.columns) - set([event_col, duration_col])))
 
 # + {"id": "lmGBY5fX0bmu", "colab_type": "code", "outputId": "6b57713b-fcc2-4879-a213-30da3fa3d700", "colab": {"base_uri": "https://localhost:8080/", "height": 469}}
 pd.DataFrame({'dtypes':churn_data[predictors].dtypes,
@@ -510,14 +518,22 @@ for col in to_dummy:
 
 predictors = to_dummy
 
-churn_data[targets + predictors].corr()
+churn_data[[event_col, duration_col] + predictors].corr()
 
 # +
 cph = lifelines.CoxPHFitter()
-cph.fit(churn_data[targets + predictors], duration_col='tenure', 
-        event_col='Churn', show_progress=True)
+cph.fit(churn_data[[event_col, duration_col] + predictors],
+        duration_col=duration_col, event_col=event_col)
 
 cph.print_summary()
 # -
 
 cph.plot();
+
+# categorical feature
+cph.plot_covariate_groups(covariate='Contract', values=[0,1]);
+
+# categorical feature
+cph.plot_covariate_groups(covariate='InternetService', values=[0,1]);
+
+cph.check_assumptions(churn_data[[event_col, duration_col] + predictors])
