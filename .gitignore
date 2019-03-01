@@ -116,4 +116,4 @@ dmypy.json
 # Custom
 kaggle.json
 *.html
-07-Advanced-Regression/datasets/fma/
+**/datasets/large/
