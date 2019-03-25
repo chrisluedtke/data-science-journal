@@ -48,7 +48,7 @@ environment with `pipenv`, installing our dependencies, and making some classes.
 We'll step through in lecture - building and publishing a package requires
 `twine`, and is generally done with these commands:
 - `python setup.py sdist bdist_wheel` (build the actual package)
-- `twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+- `twine upload --repository-url https://test.pypi.org/legacy/ dist/*`
 
 `twine` itself can be installed with `pipenv install -d twine` so it is a
 development dependency.

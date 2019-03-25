@@ -7,6 +7,7 @@ Python Notebooks are great - they let us explore data and communicate and share 
 
 A full production-grade library is a large undertaking, but this week we will build our own modest but still useful package with utility functions for common data science tasks.
 
-Since I already began a personal package of python tools, I decided to spend this week building it out further at:
+I decided to spend this week building out the following packages:
 
 https://github.com/chrisluedtke/clued
+https://github.com/chrisluedtke/divvy-data
