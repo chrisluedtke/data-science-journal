@@ -5,7 +5,7 @@ end, with it.
 
 ## Learning Objectives
 
-- deploy and use a simple PostgreSQL database
+- Deploy and use a simple PostgreSQL database
 - Create a data pipeline with SQL
 
 ## Before Lecture

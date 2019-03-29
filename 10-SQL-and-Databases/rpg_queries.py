@@ -33,16 +33,16 @@ SELECT (
 	(
     SELECT COUNT(*)
     FROM   charactercreator_thief
-    ) AS thiefs
+    ) AS thieves
 """)
 print(c.fetchall())
 
 
 print("How many total Items?")
-c.execute(
-    "SELECT COUNT(*)"
-    "FROM   armory_item"
-)
+c.execute("""\
+SELECT COUNT(*)
+FROM   armory_item
+""")
 print(c.fetchone())
 
 
