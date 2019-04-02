@@ -1,14 +1,23 @@
-_Lambda School Data Science - Big Data_
-
 # Scala for Spark - Assignment
 
 ### Learn Scala the Hard Way
 
-[**Create an Amazon EMR Notebook**](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-create.html). When creating your notebook, choose **Create a Cluster**, with 1 m4.large instance.
+Amazon AWS
+* [**Create an Amazon EMR Notebook**](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-create.html). When creating your notebook, choose **Create a Cluster**, with 1 m4.large instance.
+* [From the **Kernel** menu, choose **Change kernel**](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-working-with.html) and then select the **Spark** kernel. This enables you to use the Scala programming language.
+* Unfortunately, this takes several minutes to boot up, and you have to terminate the instance to avoid billing.
 
-[From the **Kernel** menu, choose **Change kernel**](https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-managed-notebooks-working-with.html) and then select the **Spark** kernel. This enables you to use the Scala programming language.
+Data Bricks
+* sign up for free communtiy version
+* create cluster (give name, leave everything else default)
+* create a notebook, choose scala language, and attach it to the cluster
 
-Then do the exercises below, which come from [**Learn X in Y minutes, Where X=Scala**](https://learnxinyminutes.com/docs/scala/). _(This is most of parts 1-4, 7, 9.)_
+Other
+* [Apache Zeppelin](https://zeppelin.apache.org) is an open source way to get Scala notebooks locally, like Jupyter
+* [almond](https://almond.sh/docs/try-docker) - a Scala kernel for Jupyter
+  * via Docker: `docker run -it --rm -p 8888:8888 almondsh/almond:latest`
+
+Do the exercises below, which come from [**Learn X in Y minutes, Where X=Scala**](https://learnxinyminutes.com/docs/scala/). _(This is most of parts 1-4, 7, 9.)_
 
 Do it [**"the hard way"**](https://learnpythonthehardway.org/python3/intro.html):
 
