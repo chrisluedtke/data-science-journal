@@ -1,8 +1,6 @@
-_Unit 3 - Data Engineering_
+_Unit 3 - Data Engineering -- Sprint 3 - Big Data_
 
-_Sprint 3 - Big Data_
-
-_Module 2 - Scala for Spark_
+# Scala for Spark
 
 ## Why Scala? Why Spark?
 Let's compare:
@@ -18,8 +16,7 @@ Let's compare:
 
 This outline stays the same. The mapper and reducer change to fit the problem.
 
-## Word Count in MapReduce
-* classic example
+### Word Count in MapReduce in Java (a classic example)
 
 ![](img/mapreduce.PNG)
 
@@ -65,19 +62,17 @@ class WordCountReduce extends MapReduceBase
 } 
 ```
 
-## Why was MapReduce good when it was new?
-Didn't have to write code for
-* Distributed processing
-* Fault tolerance
+MapReduce was ground breaking for enabling **distributed processing** and **fault tolerance**.
 
-If you're curious about the history, see:
 * [The Friendship That Made Google Huge](https://www.newyorker.com/magazine/2018/12/10/the-friendship-that-made-google-huge)
 * [MapReduce original research paper](https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf)
 
-## How did Spark improve upon MapReduce?
+## Spark
+
+How did Spark improve upon MapReduce?
 * Concise language (Scala)
 * Flexible APIs
-* Persist data in memory to make piped operations more efficient. Hadoop saves results back to disk.
+* Persist data in memory to make piped operations more efficient (vs. Hadoop saves results back to disk)
 * Scala is both object-oriented and functional, it's "multi-paradigm"
 
 Word Count in Spark (old RDD API)

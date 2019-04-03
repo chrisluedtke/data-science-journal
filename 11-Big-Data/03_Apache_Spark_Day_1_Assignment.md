@@ -1,6 +1,6 @@
-# Apache Spark, day 1 - Assignment
+# Apache Spark Assignment, Day 1 of 2
 
-### 1. Sign up for Databricks Community Edition
+### 1. [Sign up for Databricks Community Edition](https://databricks.com/signup#signup/community)
 
 Today we’ll continue our tour of different cloud notebook platforms!
 
@@ -10,11 +10,6 @@ We’ll use **Databricks Community Edition** today, because it’s:
 - Preconfigured, convenient
 - Preloaded with datasets
 - Made for Spark, by its creators
-
-[**Please submit the form here,**](https://databricks.com/signup#signup/community) to sign up for your free account.
-
-- _“Company Name” = “Lambda School”_
-- _“What is your intended use case?” = “Personal - Learning Spark”_
 
 ### 2. [Sign in to Databricks Community Edition](https://community.cloud.databricks.com/login.html)
 
