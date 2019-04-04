@@ -115,5 +115,4 @@ dmypy.json
 
 # Custom
 kaggle.json
-*.html
 **/datasets/large/

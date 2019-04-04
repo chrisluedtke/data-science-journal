@@ -1,6 +1,7 @@
 _Lambda School Data Science - Big Data_
 
-# Apache Spark, day 2 — lesson
+# Apache Spark, Day 2 of 2
+# Lesson
 
 Today we’ll continue using Databricks Community Edition. [Sign in](https://community.cloud.databricks.com/login.html) and [create a notebook](https://docs.databricks.com/user-guide/notebooks/notebook-manage.html#create-a-notebook).
 
@@ -14,7 +15,7 @@ In your Databricks notebook, click the toggle arrow next to the green animated i
 
 ## Question 1
 
-> When we read a dataset into Spark/Scala, is there a way to see first few rows (like `.head()` in pandas)? Just to see the column names and type? — [M](https://lambdaschoolstudents.slack.com/archives/CDRMHRX2M/p1551324171174100) 
+> When we read a dataset into Spark/Scala, is there a way to see first few rows (like `.head()` in pandas)? Just to see the column names and type?
 
 
 ```scala
@@ -79,7 +80,7 @@ range100.collect()
 ## Question 2
 
 > Need help in understanding this construct...
-  `.filter(vAndD => vAndD.valueDoubled % 2 == 0)` — [S](https://lambdaschoolstudents.slack.com/archives/CDRMHRX2M/p1551314845169000) 
+  `.filter(vAndD => vAndD.valueDoubled % 2 == 0)`
 
 ```scala
 case class ValueAndDouble(value:Long, valueDoubled:Long)
@@ -92,7 +93,7 @@ spark.range(2000)
 ```
 <sup>https://pages.databricks.com/rs/094-YMS-629/images/Apache-Spark-The-Definitive-Guide-Excerpts-R1.pdf page 23</sup>
 
-> not a scala post but ultra relevant and maybe helpful: [Modern Pandas: Method Chaining](https://tomaugspurger.github.io/method-chaining) — [Q](https://lambdaschoolstudents.slack.com/archives/CDRMHRX2M/p1551325239176800)
+> not a scala post but ultra relevant and maybe helpful: [Modern Pandas: Method Chaining](https://tomaugspurger.github.io/method-chaining)
 
 To understand chains, add and remove parts in an interactive REPL shell. For example:
 
@@ -138,7 +139,7 @@ spark.range(20)
 // Then back to Iteration 2, Iteration 1, & Original example
 ```
 
-## Assignment
+# Assignment
 
 Use this Databricks dataset:
 
