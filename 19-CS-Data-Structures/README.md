@@ -133,7 +133,7 @@ class LinkedList:
 ```
 
 ### Doubly Linked Lists
-Double linked lists are useful for situations in which the space is dynamic. If we knew how much space was needed for our problem, we would be better off with an array.
+Double linked lists are useful for situations in which the space is dynamic. If we knew how much space was needed for our problem, we would be better off with an array. Doubly linked lists require more space for each element than a linked list, and their operations (e.g. insertion, deletion) are more complex since they have to deal with two references. However doubly link lists allow traversing the list in forward and backward directions.
 
 Examples
 * text buffers
@@ -167,7 +167,12 @@ Examples
 ### Heaps
 **Heaps** are binary tree data structures implemented as an array. For any node in the heap, the value of the node is larger than the values of its children nodes. Therefore the root of the tree is the largest value.
 
-**Heaps** are implemented as arrays in order to take advantage of constant-time access to any element in the heap, which also allows us to more easily swap elements in different positions throughout the heap. To traverse the tree, we use formulaic look-up methods. Given a parent node's index value, `i`, the parent's left child index is `2i + 1`, and it's right child is located at index `2i + 2`. Conversely,a node's parent is located at index `floor((i - 1) / 2)`.
+**Heaps** are implemented as arrays in order to take advantage of constant-time access to any element in the heap, which also allows us to more easily swap elements in different positions throughout the heap. To traverse the tree, we use formulaic look-up methods. Given a parent node's index value, `i`, the parent's left child index is `2i + 1`, and its right child is located at index `2i + 2`. Conversely,a node's parent is located at index `floor((i - 1) / 2)`.
+
+* **Heaps** have the following constraints 
+    1. each node is greater than each of its children (in generic heap)
+    1. the tree is perfectly balanced
+    1. all leaves are in the leftmost position available.
 
 * Should have the methods `insert`, `delete`, `get_max`, `_bubble_up`, and `_sift_down`.
     * `insert` adds the input value into the heap; this method should ensure that the inserted value is in the correct spot in the heap

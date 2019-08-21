@@ -52,4 +52,4 @@ Answer the following questions for each of the data structures you implemented a
 1. What is the runtime complexity of `DoublyLinkedList.move_to_end`?
     * `O(1)`
 1. What is the runtime complexity of `DoublyLinkedList.delete`?
-    * Compare the runtime of the doubly linked list's `delete` method with the worst-case runtime of the JS `Array.splice` method. Which method generally performs better?
+    * 
