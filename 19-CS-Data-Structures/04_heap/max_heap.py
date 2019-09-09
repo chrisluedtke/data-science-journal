@@ -1,4 +1,4 @@
-class Heap:
+class MaxHeap:
     def __init__(self):
         self.storage = []
 
@@ -29,16 +29,16 @@ class Heap:
     def _bubble_up(self, index):
         while index > 0:
             # compare to parent
-            parent = (index - 1) // 2  # floor division
+            parent_i = (index - 1) // 2  # floor division
 
-            if parent < 0:
+            if parent_i < 0:
                 break
 
-            if self.storage[parent] < self.storage[index]:
-                self.storage[index], self.storage[parent] = \
-                    self.storage[parent], self.storage[index]  # swap
+            if self.storage[parent_i] < self.storage[index]:
+                self.storage[index], self.storage[parent_i] = \
+                    self.storage[parent_i], self.storage[index]  # swap
 
-                index = parent
+                index = parent_i
             else:
                 break
 

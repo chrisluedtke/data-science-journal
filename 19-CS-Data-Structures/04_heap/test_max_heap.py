@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import MagicMock
-from max_heap import Heap
+from max_heap import MaxHeap
 
 class HeapTests(unittest.TestCase):
   def setUp(self):
-    self.heap = Heap()
+    self.heap = MaxHeap()
 
   def test_heap_insert_works(self):
     self.heap.insert(6)
